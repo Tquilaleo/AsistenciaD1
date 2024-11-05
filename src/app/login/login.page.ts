@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular'; 
 import { ConsumoApiService } from '../service/consumoapi.service'; // Importa tu servicio
+import { ServiceguardService } from '../service/serviceguard.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,14 @@ import { ConsumoApiService } from '../service/consumoapi.service'; // Importa tu
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  
 
 
   constructor(
     private router: Router, 
     private alertController: AlertController,
-    private consumoApi: ConsumoApiService // Inyecta tu servicio
+    private consumoApi: ConsumoApiService,
+    private serviceGuard: ServiceguardService
     ) { } 
 
   usuario = new FormGroup({
@@ -26,21 +28,28 @@ export class LoginPage implements OnInit {
 
   async navegarExtras() {
 
-    const user = this.usuario.get('user')?.value ?? '';
-    const pass = this.usuario.get('pass')?.value ?? '';
+    const user = this.usuario.get('user')?.value ?? ''; 
+    const pass = this.usuario.get('pass')?.value ?? ''; 
     this.consumoApi.login(user, pass).subscribe(response => {
       console.log("Respuesta del servidor:", response);
-      if (response.tipoPerfil === 1) {
-          this.router.navigate(['/docente']);
-      } else if (response.tipoPerfil === 2) { // Asegúrate de que este valor esté correcto según tu API
-          this.router.navigate(['/alumno']);
+  
+      localStorage.setItem('token', response.token); // Almacenar el token
+      localStorage.setItem('role', response.role);   // Almacenar el rol
+
+      
+      if (response.role === 'docente') {
+          this.serviceGuard.isLoggedIn();
+          this.router.navigate(['/docente'], { state: { nombre: response.nombre} });
+      } else if (response.role === 'alumno') {
+          this.serviceGuard.isLoggedIn();
+          this.router.navigate(['/alumno'], { state: { nombre: response.nombre} });
       } else {
           this.presentAlert('Perfil no reconocido');
       }
-  }, error => {
+    }, error => {
       console.error("Error en login:", error);
       this.presentAlert('Credenciales incorrectas');
-  });
+    });
   
     
  

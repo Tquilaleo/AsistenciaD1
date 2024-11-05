@@ -8,12 +8,11 @@ export const Docenteguard: CanActivateFn = (route, state) => {
   const Serviceguard= inject(ServiceguardService);
   const router = inject(Router);
 
-  if (Serviceguard.isLoggedIn()) {
-    return true; 
+
+  const role = localStorage.getItem('role');
+  if (role === 'docente') {
+    return true; // Permitir el acceso a la ruta para docentes
   } else {
-    return router.createUrlTree(['/login']); 
+    return router.createUrlTree(['/login']); // Redirigir a login si no es docente
   }
-
-
-
 };

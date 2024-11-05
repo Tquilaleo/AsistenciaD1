@@ -12,8 +12,18 @@ export class ConsumoApiService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: string, password: string): Observable<any> {
-    const body = { user, password };
-    return this.http.post(`${this.apiUrl}/login`, body);
+  login(correo: string, password: string): Observable<{ token: string, role: string, nombre: string }> { // Cambiamos el tipo de retorno
+    const body = { correo, password };
+    return this.http.post<{ token: string, role: string, nombre: string }>(`${this.apiUrl}/login`, body)
+      .pipe(
+        map(response => {
+          
+          return {
+            token: response.token,
+            role: response.role ,
+            nombre: response.nombre 
+          };
+        })
+      );
   }
 }

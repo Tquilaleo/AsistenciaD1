@@ -27,8 +27,12 @@
     "@capacitor/keyboard": "6.0.2",
     "@capacitor/status-bar": "6.0.1",
     "@ionic/angular": "^8.0.0",
+    "ajv": "^8.17.1",
     "ionicons": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
     "rxjs": "~7.8.0",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },

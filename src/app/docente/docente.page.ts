@@ -24,11 +24,8 @@ export class DocentePage implements OnInit {
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
-      this.nombre = navigation.extras.state['nombre'];
-      this.idProfesor = navigation.extras.state['id_profesor'];
+      this.nombre = navigation.extras.state['nombre'];     
     }
-
-
   }
 
   // Función para navegar al detalle de un curso
@@ -42,6 +39,8 @@ export class DocentePage implements OnInit {
     });
   }
 
+
+  
   // Función para salir de la aplicación y volver al login
   salirAplicacion() {
     this.router.navigate(['/login']);
