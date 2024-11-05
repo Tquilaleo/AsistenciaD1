@@ -34,12 +34,13 @@ export class LoginPage implements OnInit {
       console.log("Respuesta del servidor:", response);
   
       localStorage.setItem('token', response.token); // Almacenar el token
-      localStorage.setItem('role', response.role);   // Almacenar el rol
+      localStorage.setItem('role', response.role);
+      localStorage.setItem('id_profesor', response.id_profesor.toString());   // Almacenar el rol
 
       
       if (response.role === 'docente') {
           this.serviceGuard.isLoggedIn();
-          this.router.navigate(['/docente'], { state: { nombre: response.nombre} });
+          this.router.navigate(['/docente'], { state: { nombre: response.nombre, id_profesor: response.id_profesor} });
       } else if (response.role === 'alumno') {
           this.serviceGuard.isLoggedIn();
           this.router.navigate(['/alumno'], { state: { nombre: response.nombre} });

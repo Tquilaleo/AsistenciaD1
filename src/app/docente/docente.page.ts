@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
 import { Router } from '@angular/router';
-
+import { ConsumoApiService } from '../service/consumoapi.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-docente',
@@ -11,12 +12,16 @@ export class DocentePage implements OnInit {
 
   now: Date = new Date();
   nombre: string = '';
-  idProfesor: string='';
   fecha: String = this.now.toLocaleString();
+  id_profesor: string= '';
   
   cursos: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
+    private consumoapi: ConsumoApiService
+  ) { }
 
 
 
@@ -24,9 +29,22 @@ export class DocentePage implements OnInit {
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
-      this.nombre = navigation.extras.state['nombre'];     
+      this.nombre = navigation.extras.state['nombre'];
+      this.id_profesor = navigation.extras.state['id_profesor'];   
+      this.Obtenercursos();  
     }
+
+  
+    console.log("ID del profesor en DocentePage:", this.id_profesor);
   }
+
+  Obtenercursos(){
+    this.consumoapi.Obtenercurso(parseInt(this.id_profesor)).subscribe((res)=> {
+      console.log("Cursos recibidos:", res); 
+      this.cursos = res;
+    })
+  }
+
 
   // Función para navegar al detalle de un curso
   verDetalle(curso: any) { 

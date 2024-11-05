@@ -17,9 +17,10 @@ app.use(express.json());
 //generar token
 function generateToken(user) {
   const payload = {
-    id: user.id,
+    id_profesor: user.id,
     nombre: user.nombre,
-    role: user.role 
+    role: user.role,
+    
   };
   return jwt.sign(payload, secretKey, { expiresIn: '1h' });
 }
@@ -43,7 +44,7 @@ app.post('/login', (req, res) => {
 
     if (user) {
       const token = generateToken(user);//se genera un token y devuelve el rol y el nombre del usuario.
-      res.json({ token, role: user.role, nombre: user.nombre }); 
+      res.json({ token, role: user.role, nombre: user.nombre, id_profesor: user.id  }); 
     } else {
       res.status(401).json({ message: 'Credenciales inválidas' });
     }
