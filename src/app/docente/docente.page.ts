@@ -29,7 +29,7 @@ export class DocentePage implements OnInit {
   }
 
   // Función para navegar al detalle de un curso
-  verDetalle(curso: any) {
+  verDetalle(curso: any) { 
     this.router.navigate(['/qrdocente'], {
       state: {
         nombre: curso.nombre_curso,
@@ -40,7 +40,7 @@ export class DocentePage implements OnInit {
   }
 
 
-  
+
   // Función para salir de la aplicación y volver al login
   salirAplicacion() {
     this.router.navigate(['/login']);
