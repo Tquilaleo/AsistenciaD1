@@ -30,7 +30,7 @@ export class QrdocentePage implements OnInit {
       this.nombre = navigation.extras.state['nombre'];
       this.codigo = navigation.extras.state['codigo'];
       this.seccion = navigation.extras.state['seccion'];
-      this.id_profesor = String(navigation.extras.state['id_profesor']); // O usarlo directamente como número
+      this.id_profesor = String(navigation.extras.state['id_profesor']); 
       this.id_curso = String(navigation.extras.state['id_curso']);
       this.mostrarAlumno()
     }
@@ -39,7 +39,7 @@ export class QrdocentePage implements OnInit {
   public mostrarAlumno() {
     this.consumoapi.ObtenerAlumnos(parseInt(this.id_profesor), parseInt(this.id_curso)).subscribe((res: any) => {
       this.alumnos = res;
-    }); // Añadida llave de cierre
+    }); 
   }
 
   salirAplicacion() {

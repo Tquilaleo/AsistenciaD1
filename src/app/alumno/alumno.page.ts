@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ConsumoApiService } from '../service/consumoapi.service';
 
 @Component({
   selector: 'app-alumno',
@@ -12,7 +13,7 @@ export class AlumnoPage implements OnInit {
   nombre: string = ''; 
   fecha: string = this.now.toLocaleString(); 
 
-  constructor(private router: Router, private alertController: AlertController) {}
+  constructor(private router: Router, private alertController: AlertController, consumoapi: ConsumoApiService) {}
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();

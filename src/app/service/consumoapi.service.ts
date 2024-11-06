@@ -12,7 +12,7 @@ export class ConsumoApiService {
 
   constructor(private http: HttpClient) {}
 
-  public login(correo: string, password: string): Observable<{ token: string, role: string, nombre: string, id_profesor: number }> { // Cambiamos el tipo de retorno
+  public login(correo: string, password: string): Observable<{ token: string, role: string, nombre: string, id_profesor: number }> { 
     const body = { correo, password };
     return this.http.post<{ token: string, role: string, nombre: string, id_profesor: number }>(`${this.apiUrl}/login`, body)
       .pipe(

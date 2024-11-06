@@ -23,9 +23,6 @@ export class DocentePage implements OnInit {
     private consumoapi: ConsumoApiService
   ) { }
 
-
-
-  // Método ngOnInit para obtener datos del estado de navegación
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
