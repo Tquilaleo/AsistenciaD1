@@ -11,8 +11,8 @@ export const Docenteguard: CanActivateFn = (route, state) => {
 
   const role = localStorage.getItem('role');
   if (role === 'docente') {
-    return true; // Permitir el acceso a la ruta para docentes
+    return true; 
   } else {
-    return router.createUrlTree(['/login']); // Redirigir a login si no es docente
+    return router.createUrlTree(['/login']); 
   }
 };

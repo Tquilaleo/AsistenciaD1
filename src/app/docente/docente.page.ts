@@ -50,9 +50,11 @@ export class DocentePage implements OnInit {
   verDetalle(curso: any) { 
     this.router.navigate(['/qrdocente'], {
       state: {
-        nombre: curso.nombre_curso,
+        nombre: curso.nombre,
         codigo: curso.codigo,
-        seccion: curso.seccion
+        seccion: curso.seccion,
+        id_profesor: this.id_profesor,
+        id_curso : curso.id
       }
     });
   }
