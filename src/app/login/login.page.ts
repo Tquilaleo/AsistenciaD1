@@ -22,8 +22,8 @@ export class LoginPage implements OnInit {
     ) { } 
 
   usuario = new FormGroup({
-    user: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
-    pass: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+    user: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
+    pass: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
   });
 
   async navegarExtras() {

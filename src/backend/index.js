@@ -131,40 +131,47 @@ app.get('/profesores', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 // Registrar asistencia
 app.post('/registrar_asistencia', (req, res) => {
   const { alumno_id, codigo, seccion } = req.body;
 
-  for (let profesor of profesores) {
-    for (let curso of profesor.cursos) {
-      if (curso.codigo === codigo && curso.seccion === seccion) {
-        const alumno = curso.alumnos.find(a => a.id === alumno_id);
-        if (alumno) {
-          alumno.status = 1; // 1 es para presente
-          return res.json({ message: 'Asistencia registrada' });
+  // Ruta del archivo JSON
+  const filePath = path.join(__dirname, 'data', 'asistenciaDuoc.json');
+
+  // Leer el archivo JSON
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error leyendo el archivo JSON' });
+    }
+
+    // Parsear los datos del archivo
+    const jsonData = JSON.parse(data);
+    let asistenciaRegistrada = false;
+
+    // Buscar el curso correspondiente
+    for (let profesor of jsonData.profesores) {
+      for (let curso of profesor.cursos) {
+        if (curso.codigo === codigo && curso.seccion === seccion) {
+          // Buscar al alumno dentro del curso
+          const alumno = curso.alumnos.find(a => a.id === alumno_id);
+          if (alumno) {
+            alumno.status = "active"; // Cambiar el estado a "active"
+            asistenciaRegistrada = true;
+          }
         }
       }
     }
-  }
 
-  return res.status(400).json({ message: 'No se pudo registrar la asistencia' });
+    if (asistenciaRegistrada) {
+      // Guardar los cambios en el archivo JSON
+      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+        if (writeErr) {
+          return res.status(500).json({ error: 'Error guardando los datos' });
+        }
+        res.json({ message: 'Asistencia registrada correctamente' });
+      });
+    } else {
+      res.status(400).json({ message: 'No se pudo registrar la asistencia: Curso o alumno no encontrado' });
+    }
+  });
 });
-*/
