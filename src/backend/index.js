@@ -106,7 +106,7 @@ app.get('/profesores/:profesorId/cursos/:cursoId/alumnos', (req, res) => {
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor escuchando en http://192.168.1.88:${PORT}`);
 });
 
 
