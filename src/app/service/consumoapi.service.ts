@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class ConsumoApiService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://raw.githubusercontent.com/CristianQuilaleo/JsonAPi/refs/heads/main/asistenciaDuoc.json';
 
   constructor(private http: HttpClient) {}
 

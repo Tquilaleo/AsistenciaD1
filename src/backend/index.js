@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 const app = express();
-const PORT = 3000; // Cambia el puerto si es necesario
+//const PORT = 3000;  Cambia el puerto si es necesario
 
 const secretKey = 'una_secret_key'; 
 app.use(cors());
@@ -104,10 +104,10 @@ app.get('/profesores/:profesorId/cursos/:cursoId/alumnos', (req, res) => {
 
 
 
-// Iniciar el servidor
+/*Iniciar el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+  console.log(`https://raw.githubusercontent.com/CristianQuilaleo/JsonAPi/refs/heads/main/asistenciaDuoc.json`);
+});*/ 
 
 
 app.get('/status', (req, res) => {
