@@ -5,10 +5,10 @@ import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class ConsumoApiService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://72sks2c2-5000.brs.devtunnels.ms';
 
   constructor(private http: HttpClient) {}
 

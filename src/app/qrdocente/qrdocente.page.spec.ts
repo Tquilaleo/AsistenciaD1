@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QrdocentePage } from './qrdocente.page';
-import { HttpClientModule } from '@angular/common/http'; // Asegúrate de importar HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; 
 import { ConsumoApiService } from 'src/app/service/consumoapi.service';
 
 describe('QrdocentePage', () => {
@@ -10,8 +10,8 @@ describe('QrdocentePage', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [QrdocentePage],
-      imports: [HttpClientModule], // Agrega HttpClientModule aquí
-      providers: [ConsumoApiService] // Si tu componente usa ConsumoApiService, lo necesitas en providers
+      imports: [HttpClientModule], 
+      providers: [ConsumoApiService] 
     });
 
     fixture = TestBed.createComponent(QrdocentePage);

@@ -12,7 +12,7 @@ describe('DocentePage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DocentePage],
-      imports: [HttpClientTestingModule], // Importa HttpClientTestingModule
+      imports: [HttpClientTestingModule], 
       providers: [ ConsumoApiService,
         {
           provide: ActivatedRoute,

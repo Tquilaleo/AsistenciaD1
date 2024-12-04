@@ -6,10 +6,14 @@ const jwt = require('jsonwebtoken');
 
 
 const app = express();
-const PORT = 3000; // Cambia el puerto si es necesario
+const PORT = 5000; // Cambia el puerto si es necesario
 
 const secretKey = 'una_secret_key'; 
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+}));
+
+
 app.use(express.json());
 
 
