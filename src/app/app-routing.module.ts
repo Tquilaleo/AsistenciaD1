@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'alumno',
     loadChildren: () => import('./alumno/alumno.module').then(m => m.AlumnoPageModule),
-    canActivate:[Docenteguard]
+    canActivate:[guardAlumnoGuard]
 
   },
   {
