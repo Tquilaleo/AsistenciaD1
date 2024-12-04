@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 const app = express();
-const PORT = 3000; // Cambia el puerto si es necesario
+const PORT = 8080; // Cambia el puerto si es necesario
 
 const secretKey = 'una_secret_key'; 
 app.use(cors());
@@ -106,7 +106,7 @@ app.get('/profesores/:profesorId/cursos/:cursoId/alumnos', (req, res) => {
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://192.168.1.88:${PORT}`);
+  console.log(`Servidor escuchando en http://127.0.0.1:4040:${PORT}`);
 });
 
 
