@@ -11,9 +11,8 @@
         <ion-icon name="exit-outline"></ion-icon>Cerrar sesión
       </ion-button>
     </div>
-  </ion-content>     
+  </ion-content>
 </ion-menu>
-
 
 <ion-header [translucent]="true">
   <ion-toolbar>
@@ -38,13 +37,24 @@
       <ion-card class="custom-card">
         <ion-card-title class="custom-card-title">Registra tu Asistencia aquí</ion-card-title>
         <ion-card-header class="custom-card-header">Recuerda activar tu ubicación</ion-card-header>
-          <ion-button class="custom-button" (click)="presentAlert()">Activar</ion-button> 
-      </ion-card>
-      
-      <ion-card class="custom-card">
-        <ion-card-title class="custom-card-title">Ubicación en el Mapa</ion-card-title>
+       <!--<ion-button class="custom-button" (click)="presentAlert()">Activar</ion-button> -->
+     
         <ion-card-content>
-          <img src="assets/maps.png" alt="Maps" class="maps-image"> 
+          <ion-button (click)="takePhoto()">Registrarse</ion-button>
+          <div *ngIf="capturedPhoto">
+            <img [src]="capturedPhoto" alt="Foto tomada" class="captured-photo">
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="custom-card">
+        <ion-card-title class="custom-card-title">Ubicación</ion-card-title>
+        <ion-card-content>
+          <ion-button (click)="getLocation()">Obtener Ubicación</ion-button>
+          <div *ngIf="latitude && longitude">
+            <p>Latitud: {{latitude}}</p>
+            <p>Longitud: {{longitude}}</p>
+          </div>
         </ion-card-content>
       </ion-card>
     </div>
